@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Prova : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    private float velocity = 5f;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,6 +13,6 @@ public class Prova : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Movimiento del jugador
+        
     }
 }
