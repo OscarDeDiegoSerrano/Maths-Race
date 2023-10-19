@@ -23,7 +23,7 @@ public class GameManager : MonoBehaviour
         // Start is called before the first frame update
         void Start()
     {
-        
+        _estatGameManager = EstatsGameManager.Inici;
     }
 
     // Update is called once per frame
