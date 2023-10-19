@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject generadorRespostes;
     public GameObject generadorOperacions;
     public GameObject BotoTornarInici;
+    public GameObject IMGcontroles;
     //public GameObject generadorNumeros;
     //public GameObject generadorOperacions;
     //public GameObject botoTornarPantallaInici;
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
                 BotoControls.SetActive(true);
                 BotoRanking.SetActive(true);
                 BotoTornarInici.SetActive(false);
+                IMGcontroles.SetActive(false);
                 break;
 
             case EstatsGameManager.Jugant:
@@ -61,8 +63,45 @@ public class GameManager : MonoBehaviour
                 BotoControls.SetActive(false);
                 BotoRanking.SetActive(false);
                 BotoTornarInici.SetActive(false);
+                IMGcontroles.SetActive(false);
                 break;
 
+            case EstatsGameManager.PantallaControls:
+                player1.SetActive(false);
+                Titol.SetActive(true);
+                TextGameOver.SetActive(false);
+                BotoInici.SetActive(false);
+                BotoControls.SetActive(false);
+                BotoRanking.SetActive(false);
+                BotoTornarInici.SetActive(false);
+                IMGcontroles.SetActive(true);
+                BotoTornarInici.SetActive(true);
+                break;
         }
     }
+
+    public void PassarAEstatInici()
+    {
+        _estatGameManager = EstatsGameManager.Inici;
+        ActualitzaEstatGameManager();
+    }
+
+    public void PassarAEstatControls()
+    {
+        _estatGameManager = EstatsGameManager.PantallaControls;
+        ActualitzaEstatGameManager();
+    }
+
+    public void PassarAEstatJugant()
+    {
+        _estatGameManager = EstatsGameManager.Jugant;
+        ActualitzaEstatGameManager();
+    }
+
+    public void PassarAEstatGameOver()
+    {
+        _estatGameManager = EstatsGameManager.GameOver;
+        ActualitzaEstatGameManager();
+    }
+
 }
