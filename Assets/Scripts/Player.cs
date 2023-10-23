@@ -4,39 +4,39 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float _velCoche; //variable velocitat Nau
-    private float velocity = 10f;
+    public float _velPlayer; //variable velocidad Player
     // Start is called before the first frame update
     void Start()
     {
-        _velCoche = 5f; //f de float
+        _velPlayer = 5f; //velocidad determinada
     }
 
     // Update is called once per frame
     void Update()
     {
-        MovimentCoche();
+        movPlayer(); //movimientoPlayer
     }
 
-    private void MovimentCoche()
+    private void movPlayer()
     {
         //GetAxis acelera poco a poco
         //GetAxisRaw de golpe
-        float direccioHorizontal = Input.GetAxisRaw("Horizontal");
+        float direccionHorizontal = Input.GetAxisRaw("Horizontal");
 
-        Vector2 direccioIndicada = new Vector2(direccioHorizontal, 0);
+        Vector2 direccionIndicada = new Vector2(direccionHorizontal, 0);
 
         SpriteRenderer SpriteRenderer = GetComponent<SpriteRenderer>();
         float anchura = SpriteRenderer.bounds.size.x / 2;
 
         //orthographicSize es la distancia desde el centro de la pantalla al borde.
         //Camera.main.aspect devuelve cuanto mas de anchura hay respecto a la altura ya que no todas las pantallas tienen la altura = a la anchura. R = ANCHURA / ALTURA.
-        float limitEsquerraX = -Camera.main.orthographicSize * Camera.main.aspect + anchura;
-        float limitDretaX = Camera.main.orthographicSize * Camera.main.aspect - anchura;
+        float tercioPantalla = Camera.main.orthographicSize * Camera.main.aspect / 2.60f;
+        float limitEsquerraX = -tercioPantalla + anchura;
+        float limitDretaX = tercioPantalla - anchura;
 
         //Ens retorna la posició actual de la nau
         Vector2 novaPos = transform.position;
-        novaPos += direccioIndicada * _velCoche * Time.deltaTime;
+        novaPos += direccionIndicada * _velPlayer * Time.deltaTime;
         //Time.deltaTime fa que el joc vagi en la mateixa velocitat en ordinadors diferents.
 
         novaPos.x = Mathf.Clamp(novaPos.x, limitEsquerraX, limitDretaX);
