@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject generadorRespostes;
     public GameObject generadorOperacions;
     public GameObject BotoTornarInici;
+    public GameObject BotoHistoria;
     public GameObject IMGcontroles;
     //public GameObject generadorNumeros;
     //public GameObject generadorOperacions;
@@ -23,6 +24,7 @@ public class GameManager : MonoBehaviour
         Inici,
         PantallaControls,
         PantallaRanking,
+        PantallaHistoria,
         Jugant,
         GameOver
     }
@@ -52,6 +54,7 @@ public class GameManager : MonoBehaviour
                 BotoControls.SetActive(true);
                 BotoRanking.SetActive(true);
                 BotoTornarInici.SetActive(false);
+                BotoHistoria.SetActive(true);
                 IMGcontroles.SetActive(false);
                 break;
 
@@ -62,7 +65,8 @@ public class GameManager : MonoBehaviour
                 BotoInici.SetActive(false);
                 BotoControls.SetActive(false);
                 BotoRanking.SetActive(false);
-                BotoTornarInici.SetActive(false);
+                BotoTornarInici.SetActive(true);
+                BotoHistoria.SetActive(false);
                 IMGcontroles.SetActive(false);
                 break;
 
@@ -75,6 +79,20 @@ public class GameManager : MonoBehaviour
                 BotoRanking.SetActive(false);
                 BotoTornarInici.SetActive(false);
                 IMGcontroles.SetActive(true);
+                BotoHistoria.SetActive(false);
+                BotoTornarInici.SetActive(true);
+                break;
+
+            case EstatsGameManager.PantallaHistoria:
+                player1.SetActive(false);
+                Titol.SetActive(true);
+                TextGameOver.SetActive(false);
+                BotoInici.SetActive(false);
+                BotoControls.SetActive(false);
+                BotoRanking.SetActive(false);
+                BotoTornarInici.SetActive(false);
+                BotoHistoria.SetActive(false);
+                IMGcontroles.SetActive(false);
                 BotoTornarInici.SetActive(true);
                 break;
         }
