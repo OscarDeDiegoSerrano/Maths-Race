@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
     {
         movPlayer(); //movimientoPlayer
     }
-
+                
     private void movPlayer()
     {
         //GetAxis acelera poco a poco

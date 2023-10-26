@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -9,18 +10,25 @@ public class GameManager : MonoBehaviour
     public GameObject TextGameOver;
     public GameObject Titol;
     public GameObject BotoInici;
+    public GameObject BotoStory;
     public GameObject BotoControls;
     public GameObject BotoRanking;
+    public GameObject BotoNext;
     public GameObject generadorRespostes;
     public GameObject generadorOperacions;
     public GameObject BotoTornarInici;
     public GameObject IMGcontroles;
+    public GameObject IMGstory1, IMGstory2, IMGstory3;
+    
     //public GameObject generadorNumeros;
     //public GameObject generadorOperacions;
     //public GameObject botoTornarPantallaInici;
     public enum EstatsGameManager
     {
         Inici,
+        PantallaStory,
+        PantallaStory2,
+        PantallaStory3,
         PantallaControls,
         PantallaRanking,
         Jugant,
@@ -28,6 +36,7 @@ public class GameManager : MonoBehaviour
     }
 
     private EstatsGameManager _estatGameManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,10 +58,15 @@ public class GameManager : MonoBehaviour
                 Titol.SetActive(true);
                 TextGameOver.SetActive(false);
                 BotoInici.SetActive(true);
+                BotoStory.SetActive(true);
                 BotoControls.SetActive(true);
                 BotoRanking.SetActive(true);
                 BotoTornarInici.SetActive(false);
+                BotoNext.SetActive(false);
                 IMGcontroles.SetActive(false);
+                IMGstory1.SetActive(false);
+                IMGstory2.SetActive(false);
+                IMGstory3.SetActive(false);
                 break;
 
             case EstatsGameManager.Jugant:
@@ -60,10 +74,63 @@ public class GameManager : MonoBehaviour
                 Titol.SetActive(false);
                 TextGameOver.SetActive(false);
                 BotoInici.SetActive(false);
+                BotoStory.SetActive(false);
                 BotoControls.SetActive(false);
                 BotoRanking.SetActive(false);
-                BotoTornarInici.SetActive(false);
+                BotoTornarInici.SetActive(true);//per fer proves
+                BotoNext.SetActive(false);
                 IMGcontroles.SetActive(false);
+                IMGstory1.SetActive(false);
+                IMGstory2.SetActive(false);
+                IMGstory3.SetActive(false);
+                break;
+
+            case EstatsGameManager.PantallaStory:
+                player1.SetActive(false);
+                Titol.SetActive(false);
+                TextGameOver.SetActive(false);
+                BotoInici.SetActive(false);
+                BotoStory.SetActive(false);
+                BotoControls.SetActive(false);
+                BotoRanking.SetActive(false);
+                BotoNext.SetActive(true);
+                IMGcontroles.SetActive(false);
+                BotoTornarInici.SetActive(false);
+                IMGstory1.SetActive(true);
+                IMGstory2.SetActive(false);
+                IMGstory3.SetActive(false);
+                break;
+
+            case EstatsGameManager.PantallaStory2:
+                player1.SetActive(false);
+                Titol.SetActive(false);
+                TextGameOver.SetActive(false);
+                BotoInici.SetActive(false);
+                BotoStory.SetActive(false);
+                BotoControls.SetActive(false);
+                BotoRanking.SetActive(false);
+                BotoNext.SetActive(true);
+                IMGcontroles.SetActive(false);
+                BotoTornarInici.SetActive(false);
+                IMGstory1.SetActive(false);
+                IMGstory2.SetActive(true);
+                IMGstory3.SetActive(false);
+                break;
+
+            case EstatsGameManager.PantallaStory3:
+                player1.SetActive(false);
+                Titol.SetActive(false);
+                TextGameOver.SetActive(false);
+                BotoInici.SetActive(false);
+                BotoStory.SetActive(false);
+                BotoControls.SetActive(false);
+                BotoRanking.SetActive(false);
+                BotoNext.SetActive(false);
+                IMGcontroles.SetActive(false);
+                BotoTornarInici.SetActive(true);
+                IMGstory1.SetActive(false);
+                IMGstory2.SetActive(false);
+                IMGstory3.SetActive(true);
                 break;
 
             case EstatsGameManager.PantallaControls:
@@ -71,11 +138,15 @@ public class GameManager : MonoBehaviour
                 Titol.SetActive(true);
                 TextGameOver.SetActive(false);
                 BotoInici.SetActive(false);
+                BotoStory.SetActive(false);
                 BotoControls.SetActive(false);
                 BotoRanking.SetActive(false);
-                BotoTornarInici.SetActive(false);
+                BotoNext.SetActive(false);
                 IMGcontroles.SetActive(true);
                 BotoTornarInici.SetActive(true);
+                IMGstory1.SetActive(false);
+                IMGstory2.SetActive(false);
+                IMGstory3.SetActive(false);
                 break;
         }
     }
@@ -86,6 +157,23 @@ public class GameManager : MonoBehaviour
         ActualitzaEstatGameManager();
     }
 
+    public void PassarAPantallaStory()
+    {
+        if (_estatGameManager == EstatsGameManager.PantallaStory)
+        {
+            _estatGameManager = EstatsGameManager.PantallaStory2;
+        }
+        else if (_estatGameManager == EstatsGameManager.PantallaStory2)
+        {
+            _estatGameManager = EstatsGameManager.PantallaStory3;
+        }
+        else
+        {
+            _estatGameManager = EstatsGameManager.PantallaStory;
+        }
+
+        ActualitzaEstatGameManager();
+    }
     public void PassarAEstatControls()
     {
         _estatGameManager = EstatsGameManager.PantallaControls;
@@ -103,5 +191,4 @@ public class GameManager : MonoBehaviour
         _estatGameManager = EstatsGameManager.GameOver;
         ActualitzaEstatGameManager();
     }
-
 }
