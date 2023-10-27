@@ -65,9 +65,13 @@ public class GameManager : MonoBehaviour
                 BotoRanking.SetActive(true);
                 BotoTornarInici.SetActive(false);
 <<<<<<< HEAD
+<<<<<<< HEAD
                 BotoHistoria.SetActive(true);
 =======
                 BotoNext.SetActive(false);
+>>>>>>> main
+=======
+                BotoHistoria.SetActive(true);
 >>>>>>> main
                 IMGcontroles.SetActive(false);
                 IMGstory1.SetActive(false);
@@ -103,6 +107,7 @@ public class GameManager : MonoBehaviour
                 BotoStory.SetActive(false);
                 BotoControls.SetActive(false);
                 BotoRanking.SetActive(false);
+<<<<<<< HEAD
                 BotoNext.SetActive(true);
                 IMGcontroles.SetActive(false);
                 BotoTornarInici.SetActive(false);
@@ -137,6 +142,10 @@ public class GameManager : MonoBehaviour
                 BotoRanking.SetActive(false);
                 BotoNext.SetActive(false);
 >>>>>>> main
+=======
+                BotoTornarInici.SetActive(true);
+                BotoHistoria.SetActive(false);
+>>>>>>> main
                 IMGcontroles.SetActive(false);
                 BotoTornarInici.SetActive(true);
                 IMGstory1.SetActive(false);
@@ -155,6 +164,22 @@ public class GameManager : MonoBehaviour
                 BotoNext.SetActive(false);
                 IMGcontroles.SetActive(true);
                 BotoHistoria.SetActive(false);
+<<<<<<< HEAD
+=======
+                BotoTornarInici.SetActive(true);
+                break;
+
+            case EstatsGameManager.PantallaHistoria:
+                player1.SetActive(false);
+                Titol.SetActive(true);
+                TextGameOver.SetActive(false);
+                BotoInici.SetActive(false);
+                BotoControls.SetActive(false);
+                BotoRanking.SetActive(false);
+                BotoTornarInici.SetActive(false);
+                BotoHistoria.SetActive(false);
+                IMGcontroles.SetActive(false);
+>>>>>>> main
                 BotoTornarInici.SetActive(true);
                 break;
 
