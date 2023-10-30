@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,10 +6,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float _velPlayer; //variable velocidad Player
+    public bool seHaMovido;
     // Start is called before the first frame update
     void Start()
     {
         _velPlayer = 5f; //velocidad determinada
+        seHaMovido = false;
     }
 
     // Update is called once per frame
@@ -40,6 +43,11 @@ public class Player : MonoBehaviour
         //Time.deltaTime fa que el joc vagi en la mateixa velocitat en ordinadors diferents.
 
         novaPos.x = Mathf.Clamp(novaPos.x, limitEsquerraX, limitDretaX);
+
+        if (direccionHorizontal != 0)
+        {
+            seHaMovido = true;
+        }
 
         transform.position = novaPos;
     }

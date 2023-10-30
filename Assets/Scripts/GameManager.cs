@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public GameObject BotoTornarInici;
     public GameObject IMGcontroles;
     public GameObject IMGstory1, IMGstory2, IMGstory3;
+    public GameObject IMGrespuesta;
     //prueba1Story
     
     //public GameObject generadorNumeros;

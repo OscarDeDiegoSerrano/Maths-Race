@@ -1,18 +1,39 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GeneradorRespostes : MonoBehaviour
+public class GeneradorRespuestas : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject jugador;
+    private float velocidadGeneracion;
+    public bool haIniciado;
+    public GameObject respuestaPrefab; // Asigna el prefab de Respuestas en el inspector
+
     void Start()
     {
-        
+        velocidadGeneracion = 8;
+        haIniciado = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (jugador.GetComponent<Player>().seHaMovido)
+        {
+            if (!haIniciado)
+            {
+                InvokeRepeating("GenerarRespuestas", 0f, velocidadGeneracion);
+                haIniciado = true;
+            }
+        }
+    }
+
+    void GenerarRespuestas()
+    {
+        // Crear una nueva instancia del prefab de Respuestas en la posición aleatoria
+        GameObject nuevaRespuesta1 = Instantiate(respuestaPrefab, new Vector3(-2.3f, 6,0), Quaternion.identity);
+        GameObject nuevaRespuesta2 = Instantiate(respuestaPrefab, new Vector3(0, 6, 0), Quaternion.identity);
+        GameObject nuevaRespuesta3 = Instantiate(respuestaPrefab, new Vector3(2.3f, 6, 0), Quaternion.identity);
     }
 }
+
+
