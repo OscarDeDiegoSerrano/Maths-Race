@@ -4,15 +4,40 @@ using UnityEngine;
 
 public class GeneradorOperacions : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public GameObject jugador;
+    private float velocidadGeneracion;
+    public bool haIniciado;
+    public GameObject senalautopista; // Asigna el prefab de operacion en el inspector
+
     void Start()
     {
-        
+        velocidadGeneracion = 8;
+        haIniciado = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (jugador.GetComponent<Player>().seHaMovido)
+        {
+            if (!haIniciado)
+            {
+                InvokeRepeating("GenerarOperacio", 0f, velocidadGeneracion);
+                haIniciado = true;
+            }
+        }
     }
+
+    void GenerarOperacio()
+    {
+        // Crear una nueva instancia del prefab de operacion en la posición aleatoria
+        GameObject nuevaOperacio = Instantiate(senalautopista, new Vector3(7.2f, 6, 0), Quaternion.identity);
+    }
+
+    public void aturarGeneracioOperacio()
+    {
+        CancelInvoke("GenerarOperacio");
+    }
+
 }
+
+

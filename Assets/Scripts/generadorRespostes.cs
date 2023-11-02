@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GeneradorRespuestas : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class GeneradorRespuestas : MonoBehaviour
         {
             if (!haIniciado)
             {
-                InvokeRepeating("GenerarRespuestas", 0f, velocidadGeneracion);
+                InvokeRepeating("GenerarRespuestas", 4f, velocidadGeneracion);
                 haIniciado = true;
             }
         }

@@ -20,11 +20,9 @@ public class GameManager : MonoBehaviour
     public GameObject IMGcontroles;
     public GameObject IMGstory1, IMGstory2, IMGstory3;
     public GameObject IMGrespuesta;
-    //prueba1Story
+    public GameObject IMGoperacion;
+
     
-    //public GameObject generadorNumeros;
-    //public GameObject generadorOperacions;
-    //public GameObject botoTornarPantallaInici;
     public enum EstatsGameManager
     {
         Inici,
@@ -70,6 +68,7 @@ public class GameManager : MonoBehaviour
                 IMGstory2.SetActive(false);
                 IMGstory3.SetActive(false);
                 generadorRespostes.GetComponent<GeneradorRespuestas>().aturarGeneracioRespostes();
+                generadorOperacions.GetComponent<GeneradorOperacions>().aturarGeneracioOperacio();
                 break;
 
             case EstatsGameManager.Jugant:
