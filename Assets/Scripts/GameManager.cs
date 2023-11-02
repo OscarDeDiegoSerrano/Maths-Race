@@ -69,7 +69,7 @@ public class GameManager : MonoBehaviour
                 IMGstory1.SetActive(false);
                 IMGstory2.SetActive(false);
                 IMGstory3.SetActive(false);
-
+                generadorRespostes.GetComponent<GeneradorRespuestas>().aturarGeneracioRespostes();
                 break;
 
             case EstatsGameManager.Jugant:

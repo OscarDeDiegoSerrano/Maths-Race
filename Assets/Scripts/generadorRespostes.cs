@@ -35,7 +35,7 @@ public class GeneradorRespuestas : MonoBehaviour
         GameObject nuevaRespuesta3 = Instantiate(respuestaPrefab, new Vector3(2.3f, 6, 0), Quaternion.identity);
     }
 
-    private void aturarGeneracioRespostes()
+    public void aturarGeneracioRespostes()
     {
         CancelInvoke("GenerarRespuestas");
     }
