@@ -185,6 +185,9 @@ public class GameManager : MonoBehaviour
     public void PassarAEstatJugant()
     {
         _estatGameManager = EstatsGameManager.Jugant;
+        generadorRespostes.GetComponent<GeneradorRespuestas>().PosarIniciarFalse();
+        generadorOperacions.GetComponent<GeneradorOperacions>().PosarIniciarFalse();
+
         ActualitzaEstatGameManager();
     }
 

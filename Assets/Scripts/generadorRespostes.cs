@@ -39,6 +39,12 @@ public class GeneradorRespuestas : MonoBehaviour
     public void aturarGeneracioRespostes()
     {
         CancelInvoke("GenerarRespuestas");
+
+    }
+
+    public void PosarIniciarFalse()
+    {
+        haIniciado = false;
     }
 
 }

@@ -36,6 +36,12 @@ public class GeneradorOperacions : MonoBehaviour
     public void aturarGeneracioOperacio()
     {
         CancelInvoke("GenerarOperacio");
+       
+    }
+
+    public void PosarIniciarFalse()
+    {
+        haIniciado = false;
     }
 
 }
