@@ -25,8 +25,16 @@ public class Respuestas : MonoBehaviour
         if (transform.position.y < -screenHeight)
         {
             Destroy(gameObject);
+
+            // Además, si deseas realizar alguna acción adicional al destruir el objeto, puedes llamar al método correspondiente en GeneradorRespuestas
+            GeneradorRespuestas generadorRespuestas = FindObjectOfType<GeneradorRespuestas>();
+            if (generadorRespuestas != null)
+            {
+                generadorRespuestas.PosarIniciFalse();
+            }
         }
     }
 }
+
 
 

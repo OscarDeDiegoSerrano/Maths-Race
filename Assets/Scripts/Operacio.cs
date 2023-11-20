@@ -10,7 +10,6 @@ public class Operacio : MonoBehaviour
 
     private void Start()
     {
-        Numero = UnityEngine.Random.Range(20, 101); // Generar número aleatorio entre 20 y 100
         ImagenFondo = "IMGoperacion"; // Establecer el fondo de imagen como "imagen1"
     }
 
@@ -29,4 +28,3 @@ public class Operacio : MonoBehaviour
         }
     }
 }
-

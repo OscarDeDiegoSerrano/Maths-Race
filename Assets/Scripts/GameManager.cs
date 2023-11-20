@@ -1,11 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-
     public GameObject player1;
     public GameObject TextGameOver;
     public GameObject Titol;
@@ -22,7 +18,6 @@ public class GameManager : MonoBehaviour
     public GameObject IMGrespuesta;
     public GameObject IMGoperacion;
 
-    
     public enum EstatsGameManager
     {
         Inici,
@@ -41,12 +36,13 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         _estatGameManager = EstatsGameManager.Inici;
+        ActualitzaEstatGameManager();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        // Puedes agregar lógica de actualización aquí si es necesario
     }
 
     private void ActualitzaEstatGameManager()
@@ -67,8 +63,8 @@ public class GameManager : MonoBehaviour
                 IMGstory1.SetActive(false);
                 IMGstory2.SetActive(false);
                 IMGstory3.SetActive(false);
-                generadorRespostes.GetComponent<GeneradorRespuestas>().aturarGeneracioRespostes();
-                generadorOperacions.GetComponent<GeneradorOperacions>().aturarGeneracioOperacio();
+                generadorRespostes.GetComponent<GeneradorRespuestas>().PosarIniciFalse(); // Corregir el nombre del método
+                generadorOperacions.GetComponent<GeneradorOperacions>().PosarIniciarFalse(); // Corregir el nombre del método
                 break;
 
             case EstatsGameManager.Jugant:
@@ -79,7 +75,7 @@ public class GameManager : MonoBehaviour
                 BotoStory.SetActive(false);
                 BotoControls.SetActive(false);
                 BotoRanking.SetActive(false);
-                BotoTornarInici.SetActive(true);//per fer proves
+                BotoTornarInici.SetActive(true); // Para pruebas
                 BotoNext.SetActive(false);
                 IMGcontroles.SetActive(false);
                 IMGstory1.SetActive(false);
@@ -176,6 +172,7 @@ public class GameManager : MonoBehaviour
 
         ActualitzaEstatGameManager();
     }
+
     public void PassarAEstatControls()
     {
         _estatGameManager = EstatsGameManager.PantallaControls;
@@ -185,8 +182,8 @@ public class GameManager : MonoBehaviour
     public void PassarAEstatJugant()
     {
         _estatGameManager = EstatsGameManager.Jugant;
-        generadorRespostes.GetComponent<GeneradorRespuestas>().PosarIniciarFalse();
-        generadorOperacions.GetComponent<GeneradorOperacions>().PosarIniciarFalse();
+        generadorRespostes.GetComponent<GeneradorRespuestas>().PosarIniciFalse(); // Corregir el nombre del método
+        generadorOperacions.GetComponent<GeneradorOperacions>().PosarIniciarFalse(); // Corregir el nombre del método
 
         ActualitzaEstatGameManager();
     }
