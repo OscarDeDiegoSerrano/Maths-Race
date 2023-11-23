@@ -53,10 +53,12 @@ public class OperacioAleatoria : MonoBehaviour
                 gameObject.GetComponent<TMPro.TextMeshPro>().text = "Opció no contemplada";
                 break;
         }
+        Invoke("GenerarRespuestas", .2f);
+    }
 
-
-        // Set the correct answer in GeneradorRespuestas
-        FindObjectOfType<GeneradorRespuestas>().SetRespuestaCorrecta(resultat);
+    public void GenerarRespuestas()
+    {
+        GameObject.Find("GeneradorRespostes").GetComponent<GeneradorRespuestas>().GenerarRespuestas();
     }
 
     public int ObtenerResultado()

@@ -22,19 +22,12 @@ public class GeneradorRespuestas : MonoBehaviour
 
     void Update()
     {
-        if (jugador.GetComponent<Player>().seHaMovido)
-        {
-            if (!haIniciado)
-            {
-                InvokeRepeating("GenerarRespuestas", 3f, velocidadGeneracion);
-                haIniciado = true;
-            }
-        }
+
     }
 
-    void GenerarRespuestas()
+    public void GenerarRespuestas()
     {
-        OperacioAleatoria operacioAleatoria = FindObjectOfType<OperacioAleatoria>();
+        GameObject operacioAleatoria = GameObject.Find("textOperacio");
 
         if (operacioAleatoria != null)
         {
@@ -47,22 +40,17 @@ public class GeneradorRespuestas : MonoBehaviour
             int[] posiciones = { 0, 1, 2 };
             RandomizeArray(posiciones);
 
-            int respuestaCorrecta = operacioAleatoria.ObtenerResultado();
+            int respuestaCorrecta = operacioAleatoria.GetComponent<OperacioAleatoria>().ObtenerResultado();
             int respuestaIncorrecta1 = respuestaCorrecta + Random.Range(-5, 5);
             int respuestaIncorrecta2 = respuestaCorrecta + Random.Range(-5, 5); // TODO
-            NumeroAleatorioRespuesta ne = nuevaRespuesta1.GetComponentInChildren<NumeroAleatorioRespuesta>();
+                                                                                //NumeroAleatorioRespuesta ne = nuevaRespuesta1.GetComponentInChildren<NumeroAleatorioRespuesta>();
+            nuevaRespuesta1.GetComponentInChildren<TMPro.TextMeshPro>().text = respuestaIncorrecta1.ToString();
+            nuevaRespuesta2.GetComponentInChildren<TMPro.TextMeshPro>().text = respuestaIncorrecta2.ToString();
+            nuevaRespuesta3.GetComponentInChildren<TMPro.TextMeshPro>().text = respuestaCorrecta.ToString();
 
-            if (ne != null) {
-                ne.setNumber(10);
-            }
-
-            //nuevaRespuesta1.GetComponentInChildren<TMPro.TextMeshPro>().text = respuestaIncorrecta1.ToString();
-            //nuevaRespuesta2.GetComponentInChildren<TMPro.TextMeshPro>().text = respuestaIncorrecta2.ToString();
-            //nuevaRespuesta3.GetComponent<TMPro.TextMeshPro>().text = respuestaCorrecta.ToString();
-
-            //nuevaRespuesta1.transform.position = GetPosicion(posiciones[0]);
-            //nuevaRespuesta2.transform.position = GetPosicion(posiciones[1]);
-            //nuevaRespuesta3.transform.position = GetPosicion(posiciones[2]);
+            nuevaRespuesta1.transform.position = GetPosicion(posiciones[0]);
+            nuevaRespuesta2.transform.position = GetPosicion(posiciones[1]);
+            nuevaRespuesta3.transform.position = GetPosicion(posiciones[2]);
         }
         else
         {
