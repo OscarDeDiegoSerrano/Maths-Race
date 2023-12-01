@@ -11,37 +11,54 @@ public class GeneradorOperacions : MonoBehaviour
 
     void Start()
     {
-        velocidadGeneracion = 8;
+        velocidadGeneracion = 12f;
         haIniciado = false;
     }
 
     void Update()
     {
-        if (jugador.GetComponent<Player>().seHaMovido)
+       /* if (jugador.GetComponent<Player>().seHaMovido)
         {
+            Debug.Log("GeneradorOperacions: Jugador s'ha mogut.");
             if (!haIniciado)
             {
+                Debug.Log("GeneradorOperacions: Es crida el InvokeRepeating.");
                 InvokeRepeating("GenerarOperacio", 0f, velocidadGeneracion);
                 haIniciado = true;
+                
             }
-        }
+            
+        }*/
+    }
+
+    public void IniciGeneracioOperacions()
+    {
+        InvokeRepeating("GenerarOperacio", 2f, velocidadGeneracion);
     }
 
     void GenerarOperacio()
     {
         // Crear una nueva instancia del prefab de operacion en la posición aleatoria
-        GameObject nuevaOperacio = Instantiate(senalautopista, new Vector3(7.2f, 6, 0), Quaternion.identity);
+        GameObject nuevaOperacio = Instantiate(senalautopista, new Vector2(7.2f, 6), Quaternion.identity);
     }
 
-    public void aturarGeneracioOperacio()
+    /*public void aturarGeneracioOperacio()
     {
+        Debug.Log("escrida");
         CancelInvoke("GenerarOperacio");
        
-    }
+    }*/
 
     public void PosarIniciarFalse()
     {
         haIniciado = false;
+    }
+
+    public void AturarGeneracioOperacions()
+    {
+        Debug.Log("GeneradorOperacions: CancelInvoke.");
+        haIniciado = false;
+        CancelInvoke("GenerarOperacio");
     }
 
 }

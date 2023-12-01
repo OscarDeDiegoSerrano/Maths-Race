@@ -65,9 +65,12 @@ public class GameManager : MonoBehaviour
                 IMGstory3.SetActive(false);
                 generadorRespostes.GetComponent<GeneradorRespuestas>().PosarIniciFalse(); // Corregir el nombre del método
                 generadorOperacions.GetComponent<GeneradorOperacions>().PosarIniciarFalse(); // Corregir el nombre del método
+                GameObject.Find("GeneradorOperacions").GetComponent<GeneradorOperacions>().AturarGeneracioOperacions();
                 break;
 
             case EstatsGameManager.Jugant:
+                GameObject.Find("GeneradorOperacions").GetComponent<GeneradorOperacions>().IniciGeneracioOperacions();
+
                 player1.SetActive(true);
                 Titol.SetActive(false);
                 TextGameOver.SetActive(false);

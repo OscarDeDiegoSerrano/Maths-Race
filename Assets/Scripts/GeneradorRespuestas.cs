@@ -31,6 +31,7 @@ public class GeneradorRespuestas : MonoBehaviour
 
         if (operacioAleatoria != null)
         {
+            //Debug.Log("GenerarRespuestas");
             GameObject nuevaRespuesta1 = Instantiate(respuestaPrefab, posEsquerra, Quaternion.identity);
             GameObject nuevaRespuesta2 = Instantiate(respuestaPrefab, posCentre, Quaternion.identity);
             GameObject nuevaRespuesta3 = Instantiate(respuestaPrefab, posDreta, Quaternion.identity);
@@ -41,12 +42,13 @@ public class GeneradorRespuestas : MonoBehaviour
             RandomizeArray(posiciones);
 
             int respuestaCorrecta = operacioAleatoria.GetComponent<OperacioAleatoria>().ObtenerResultado();
-            int respuestaIncorrecta1 = respuestaCorrecta + Random.Range(-5, 5);
-            int respuestaIncorrecta2 = respuestaCorrecta + Random.Range(-5, 5); // TODO
+            int respuestaIncorrecta1 = respuestaCorrecta + Random.Range(-10, 10);
+            int respuestaIncorrecta2 = respuestaCorrecta + Random.Range(-10, 10); // TODO
                                                                                 //NumeroAleatorioRespuesta ne = nuevaRespuesta1.GetComponentInChildren<NumeroAleatorioRespuesta>();
             nuevaRespuesta1.GetComponentInChildren<TMPro.TextMeshPro>().text = respuestaIncorrecta1.ToString();
             nuevaRespuesta2.GetComponentInChildren<TMPro.TextMeshPro>().text = respuestaIncorrecta2.ToString();
             nuevaRespuesta3.GetComponentInChildren<TMPro.TextMeshPro>().text = respuestaCorrecta.ToString();
+            nuevaRespuesta3.GetComponent<Respuesta>().hacerlaCorrecta();
 
             nuevaRespuesta1.transform.position = GetPosicion(posiciones[0]);
             nuevaRespuesta2.transform.position = GetPosicion(posiciones[1]);
@@ -96,7 +98,7 @@ public class GeneradorRespuestas : MonoBehaviour
 
     public void SetRespuestaCorrecta(int respuestaCorrecta)
     {
-        Debug.Log("Respuesta correcta establecida: " + respuestaCorrecta);
+        //Debug.Log("Respuesta correcta establecida: " + respuestaCorrecta);
         // Aquí puedes hacer algo más con la respuesta correcta si es necesario
     }
 }

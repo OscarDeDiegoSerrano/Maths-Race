@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Respuestas : MonoBehaviour
+public class Respuesta : MonoBehaviour
 {
     public int Numero { get; set; }
     public string ImagenFondo { get; set; }
+    public bool esCorrecta = false;
+    public GameObject explosioPrefab;
 
     private void Start()
     {
@@ -13,10 +15,15 @@ public class Respuestas : MonoBehaviour
         ImagenFondo = "IMGrespuesta"; // Establecer el fondo de imagen como "imagen1"
     }
 
+    public void hacerlaCorrecta()
+    {
+        esCorrecta = true;
+    }
+
     private void Update()
     {
         // Mover hacia abajo
-        transform.Translate(Vector3.down * Time.deltaTime);
+        transform.Translate(Vector2.down * Time.deltaTime);
 
         // Obtener el tamaño de la pantalla en unidades del mundo
         float screenHeight = Camera.main.orthographicSize;
@@ -34,7 +41,31 @@ public class Respuestas : MonoBehaviour
             }
         }
     }
-}
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player1"))
+        {
+            if (esCorrecta)
+            {
+                // Destruir la respuesta correcta
+                Destroy(gameObject);
+            }
+            else
+            {
+                // Obtener la posición del objeto Player1
+                Vector2 posicionExplosion = other.transform.position;
+
+                // Cargar el prefab desde la carpeta Resources
+                //GameObject explosionPrefab = Resources.Load("Prefabs/Explosion") as GameObject;
+                
+                GameObject explosio = Instantiate(explosioPrefab);
+                explosio.transform.position = posicionExplosion;
+
+                GameObject.Find("GeneradorOperacions").GetComponent<GeneradorOperacions>().AturarGeneracioOperacions();
+            }
+        }
+    }
+}
 
 

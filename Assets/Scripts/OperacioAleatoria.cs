@@ -4,15 +4,6 @@ public class OperacioAleatoria : MonoBehaviour
 {
     private int operant1, operant2, resultat;
 
-    public enum PosicioResposta
-    {
-        Esquerra,
-        Centre,
-        Dreta
-    }
-
-    private PosicioResposta _posicioResposta;
-
     void Start()
     {
         // Generate random operation and correct answer
@@ -21,9 +12,9 @@ public class OperacioAleatoria : MonoBehaviour
 
     void GenerarOperacionAleatoria()
     {
-        int escollirOperant = Random.Range(0, 4);
-        operant1 = Random.Range(0, 100);
-        operant2 = Random.Range(0, 100);
+        int escollirOperant = Random.Range(0, 2);
+        operant1 = Random.Range(50, 100);
+        operant2 = Random.Range(0, 50);
 
         switch (escollirOperant)
         {
@@ -53,7 +44,7 @@ public class OperacioAleatoria : MonoBehaviour
                 gameObject.GetComponent<TMPro.TextMeshPro>().text = "Opció no contemplada";
                 break;
         }
-        Invoke("GenerarRespuestas", .2f);
+        Invoke("GenerarRespuestas", .1f);
     }
 
     public void GenerarRespuestas()

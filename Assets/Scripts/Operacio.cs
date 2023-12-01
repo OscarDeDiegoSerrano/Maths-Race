@@ -8,6 +8,8 @@ public class Operacio : MonoBehaviour
     public int Numero { get; set; }
     public string ImagenFondo { get; set; }
 
+    // Puedes ajustar esta variable para controlar la velocidad de descenso
+
     private void Start()
     {
         ImagenFondo = "IMGoperacion"; // Establecer el fondo de imagen como "imagen1"
@@ -15,8 +17,8 @@ public class Operacio : MonoBehaviour
 
     private void Update()
     {
-        // Mover hacia abajo
-        transform.Translate(Vector3.down * Time.deltaTime);
+        // Mover hacia abajo con una velocidad mayor
+        transform.Translate(Vector2.down * Time.deltaTime);
 
         // Obtener el tamaño de la pantalla en unidades del mundo
         float screenHeight = Camera.main.orthographicSize;
