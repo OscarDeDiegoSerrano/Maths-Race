@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,35 +24,43 @@ public class Player : MonoBehaviour
 
     private void movPlayer()
     {
-        // GetAxis acelera poco a poco
-        // GetAxisRaw de golpe
         float direccionHorizontal = Input.GetAxisRaw("Horizontal");
+        float direccionVertical = Input.GetAxisRaw("Vertical");
 
-        Vector2 direccionIndicada = new Vector2(direccionHorizontal, 0);
+        Vector2 direccionIndicada = new Vector2(direccionHorizontal, direccionVertical);
 
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         float anchura = spriteRenderer.bounds.size.x / 2;
+        float altura = spriteRenderer.bounds.size.y / 2;
 
-        // orthographicSize es la distancia desde el centro de la pantalla al borde.
-        // Camera.main.aspect devuelve cuanto más de anchura hay respecto a la altura ya que no todas las pantallas tienen la altura = a la anchura. R = ANCHURA / ALTURA.
-        float tercioPantalla = Camera.main.orthographicSize * Camera.main.aspect / 2.60f;
-        float limitEsquerraX = -tercioPantalla + anchura;
-        float limitDretaX = tercioPantalla - anchura;
+        float tercioPantallaX = Camera.main.orthographicSize * Camera.main.aspect / 2.60f;
+        float tercioPantallaY = Camera.main.orthographicSize / 2.60f;
 
-        // Ens retorna la posición actual de la nave
+        float limitEsquerraX = -tercioPantallaX + anchura;
+        float limitDretaX = tercioPantallaX - anchura;
+        float limitInferiorY = -Camera.main.orthographicSize + altura;  // Corregir límite inferior
+        float limitSuperiorY = Camera.main.orthographicSize - altura;
+
         Vector2 novaPos = transform.position;
         novaPos += direccionIndicada * _velPlayer * Time.deltaTime;
-        // Time.deltaTime hace que el juego vaya a la misma velocidad en ordenadores diferentes.
 
+        // Ajustar solo los límites en el eje X
         novaPos.x = Mathf.Clamp(novaPos.x, limitEsquerraX, limitDretaX);
 
-        if (direccionHorizontal != 0)
+        // Ajustar los límites en el eje Y para permitir el movimiento hacia arriba y abajo
+        novaPos.y = Mathf.Clamp(novaPos.y, limitInferiorY, limitSuperiorY);
+
+        if (direccionHorizontal != 0 || direccionVertical != 0)
         {
             seHaMovido = true;
         }
 
         transform.position = novaPos;
     }
+
+
+
+
     private void OnTriggerEnter2D(Collider2D objecteTocat)
     {
         if (objecteTocat.tag == "Respuesta")

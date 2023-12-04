@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         GameOver
     }
 
-    private EstatsGameManager _estatGameManager;
+    public EstatsGameManager _estatGameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -196,4 +196,5 @@ public class GameManager : MonoBehaviour
         _estatGameManager = EstatsGameManager.GameOver;
         ActualitzaEstatGameManager();
     }
+
 }
